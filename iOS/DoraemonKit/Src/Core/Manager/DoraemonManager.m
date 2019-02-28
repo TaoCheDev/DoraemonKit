@@ -50,7 +50,9 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
 @property (nonatomic, copy) DoraemonANRBlock anrBlock;
 
 @property (nonatomic, copy) DoraemonPerformanceBlock performanceBlock;
-
+    
+@property (nonatomic, copy) NSMutableArray *servers; /**< 服务器地址 */
+    
 @end
 
 @implementation DoraemonManager
@@ -140,6 +142,10 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
  初始化内置工具数据
  */
 - (void)initData{
+    #pragma mark - 业务工具
+    [self addPluginWithPluginType:DoraemonManagerPluginType_Server];
+    [self addPluginWithPluginType:DoraemonManagerPluginType_Account];
+    
     #pragma mark - 常用工具
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonAppInfoPlugin];
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonSandboxPlugin];
@@ -152,9 +158,11 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonDeleteLocalDataPlugin];
     
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonNSLogPlugin];
-#if DoraemonWithLogger
-    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonCocoaLumberjackPlugin];
-#endif
+    
+    /** 关闭自定义Log */
+//#if DoraemonWithLogger
+//    [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonCocoaLumberjackPlugin];
+//#endif
     
     #pragma mark - 性能检测
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonFPSPlugin];
@@ -171,6 +179,14 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
 
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonViewAlignPlugin];
     [self addPluginWithPluginType:DoraemonManagerPluginType_DoraemonViewMetricsPlugin];
+}
+    
+/** 配置服务器地址 */
+- (void)configTestServer:(NSString *)testServer testReleaseSever:(NSString *)testReleaseSever releaseServer:(NSString *)releaseServer currentServerType:(DoraemonManagerServerType)currentServerType {
+    [self.servers replaceObjectAtIndex:0 withObject:testServer ? : @""];
+    [self.servers replaceObjectAtIndex:1 withObject:testReleaseSever ? : @""];
+    [self.servers replaceObjectAtIndex:2 withObject:releaseServer ? : @""];
+    self.currentServerDomain = self.servers[currentServerType];
 }
 
 /**
@@ -270,7 +286,7 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
 - (void)addH5DoorBlock:(void(^)(NSString *h5Url))block{
     self.h5DoorBlock = block;
 }
-
+    
 - (void)addANRBlock:(void(^)(NSDictionary *anrDic))block{
     self.anrBlock = block;
 }
@@ -305,6 +321,21 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
 - (DoraemonManagerPluginTypeModel *)getDefaultPluginDataWithPluginType:(DoraemonManagerPluginType)pluginType
 {
     NSArray *dataArray = @{
+                           // 业务工具
+                           @(DoraemonManagerPluginType_Server) : @[
+                                   @{kTitle:@"环境切换"},
+                                   @{kDesc:@"切换服务器地址"},
+                                   @{kIcon:@"doraemon_default"},
+                                   @{kPluginName:@"DoraemonServerPlugin"},
+                                   @{kAtModule:@"业务工具"}
+                                   ],
+                           @(DoraemonManagerPluginType_Account) : @[
+                                   @{kTitle:@"账号切换"},
+                                   @{kDesc:@"切换账号"},
+                                   @{kIcon:@"doraemon_default"},
+                                   @{kPluginName:@"DoraemonAccountPlugin"},
+                                   @{kAtModule:@"业务工具"}
+                                   ],
                            // 常用工具
                            @(DoraemonManagerPluginType_DoraemonAppInfoPlugin) : @[
                                    @{kTitle:@"App信息"},
@@ -460,6 +491,15 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
     model.atModule = dataArray[4][kAtModule];
     
     return model;
+}
+    
+#pragma mark - Getter
+    
+- (NSMutableArray *)servers {
+    if (!_servers) {
+        _servers = [NSMutableArray arrayWithObjects:@"", @"", @"", nil];
+    }
+    return _servers;
 }
 
 @end

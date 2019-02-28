@@ -8,8 +8,22 @@
 #import <Foundation/Foundation.h>
 
 typedef void (^DoraemonH5DoorBlock)(NSString *);
+typedef void (^DoraemonServerChangedBlock)(NSString *serverDomain);
+
+typedef NS_ENUM(NSUInteger, DoraemonManagerServerType) {
+    DoraemonManagerServerType_Test,
+    DoraemonManagerServerType_TestRelease,
+    DoraemonManagerServerType_Release,
+};
 
 typedef NS_ENUM(NSUInteger, DoraemonManagerPluginType) {
+    
+#pragma mark - 业务工具
+    // 环境切换
+    DoraemonManagerPluginType_Server,
+    // 账号切换
+    DoraemonManagerPluginType_Account,
+    
     #pragma mark - 常用工具
     // App信息
     DoraemonManagerPluginType_DoraemonAppInfoPlugin,
@@ -76,8 +90,11 @@ typedef NS_ENUM(NSUInteger, DoraemonManagerPluginType) {
 - (void)installWithCustomBlock:(void(^)())customBlock;
 
 @property (nonatomic,strong) NSMutableArray *dataArray;
+@property (nonatomic, copy, readonly) NSMutableArray *servers; /**< 服务器地址 */
 
 @property (nonatomic, copy) DoraemonH5DoorBlock h5DoorBlock;
+@property (nonatomic, copy) DoraemonServerChangedBlock serverChangedBlock; /**< 切换环境回调 */
+@property (nonatomic, copy) NSString *currentServerDomain; /**< 当前服务器域名 */
 
 - (void)addPluginWithTitle:(NSString *)title icon:(NSString *)iconName desc:(NSString *)desc pluginName:(NSString *)entryName atModule:(NSString *)moduleName;
 
@@ -86,7 +103,7 @@ typedef NS_ENUM(NSUInteger, DoraemonManagerPluginType) {
 - (void)removePluginWithPluginName:(NSString *)pluginName atModule:(NSString *)moduleName;
 
 - (void)addStartPlugin:(NSString *)pluginName;
-
+    
 - (void)addH5DoorBlock:(void(^)(NSString *h5Url))block;
 
 - (void)addANRBlock:(void(^)(NSDictionary *anrDic))block;
@@ -96,5 +113,18 @@ typedef NS_ENUM(NSUInteger, DoraemonManagerPluginType) {
 - (void)hiddenDoraemon;
 
 - (void)hiddenHomeWindow;
+
+/**
+ 配置服务器地址
+
+ @param testServer 测试服务器
+ @param testReleaseSever 仿真服务器
+ @param releaseServer 正式服务器
+ @param currentServerType 当前服务器
+ */
+- (void)configTestServer:(NSString *)testServer
+        testReleaseSever:(NSString *)testReleaseSever
+           releaseServer:(NSString *)releaseServer
+       currentServerType:(DoraemonManagerServerType)currentServerType;
 
 @end
