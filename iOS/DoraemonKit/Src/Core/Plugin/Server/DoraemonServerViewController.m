@@ -138,7 +138,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     [[DoraemonManager shareInstance] setCurrentServerType:indexPath.row];
-    [DoraemonManager shareInstance].serverChangedBlock([[DoraemonManager shareInstance] currentServers]);
     [tableView reloadData];
     
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"该功能需要重启App才能生效" preferredStyle:UIAlertControllerStyleAlert];

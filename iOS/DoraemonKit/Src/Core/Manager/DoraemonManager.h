@@ -11,7 +11,6 @@ static const NSString *DMKeyServers = @"DMKey_Servers";
 static const NSString *DMKeyCurrentServerType = @"DMKey_CurrentServerType";
 
 typedef void (^DoraemonH5DoorBlock)(NSString *);
-typedef void (^DoraemonServerChangedBlock)(NSArray *currentServers);
 
 typedef NS_ENUM(NSUInteger, DoraemonManagerServerType) {
     DoraemonManagerServerType_Test,
@@ -95,7 +94,6 @@ typedef NS_ENUM(NSUInteger, DoraemonManagerPluginType) {
 @property (nonatomic,strong) NSMutableArray *dataArray;
 
 @property (nonatomic, copy) DoraemonH5DoorBlock h5DoorBlock;
-@property (nonatomic, copy) DoraemonServerChangedBlock serverChangedBlock; /**< 切换环境回调 */
 
 - (void)addPluginWithTitle:(NSString *)title icon:(NSString *)iconName desc:(NSString *)desc pluginName:(NSString *)entryName atModule:(NSString *)moduleName;
 
