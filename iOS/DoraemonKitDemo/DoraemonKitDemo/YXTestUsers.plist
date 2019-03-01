@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>10000000110</string>
+		<key>des</key>
+		<string></string>
+		<key>name</key>
+		<string>10000000110</string>
+		<key>pwd</key>
+		<string>uat.portal</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>10000000170</string>
+		<key>des</key>
+		<string></string>
+		<key>name</key>
+		<string>10000000170</string>
+		<key>pwd</key>
+		<string>uat.portal</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>10000000172</string>
+		<key>des</key>
+		<string></string>
+		<key>name</key>
+		<string>10000000172</string>
+		<key>pwd</key>
+		<string>uat.portal</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>10000000176</string>
+		<key>des</key>
+		<string></string>
+		<key>name</key>
+		<string>10000000176</string>
+		<key>pwd</key>
+		<string>uat.portal</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>艳玲188</string>
+		<key>des</key>
+		<string></string>
+		<key>name</key>
+		<string>18801230840</string>
+		<key>pwd</key>
+		<string>uat.portal</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>C2B</string>
+		<key>des</key>
+		<string></string>
+		<key>name</key>
+		<string>10000000309</string>
+		<key>pwd</key>
+		<string>uat.portal</string>
+	</dict>
+</array>
+</plist>

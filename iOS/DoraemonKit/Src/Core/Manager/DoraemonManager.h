@@ -92,8 +92,8 @@ typedef NS_ENUM(NSUInteger, DoraemonManagerPluginType) {
 - (void)installWithCustomBlock:(void(^)())customBlock;
 
 @property (nonatomic,strong) NSMutableArray *dataArray;
-
 @property (nonatomic, copy) DoraemonH5DoorBlock h5DoorBlock;
+@property (nonatomic, copy) void (^handleDidSelectedTestUserBlock)(NSDictionary *userInfo); /**< 已选择切换测试账号Block */
 
 - (void)addPluginWithTitle:(NSString *)title icon:(NSString *)iconName desc:(NSString *)desc pluginName:(NSString *)entryName atModule:(NSString *)moduleName;
 

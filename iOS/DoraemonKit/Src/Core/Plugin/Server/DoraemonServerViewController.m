@@ -18,7 +18,6 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, copy) NSString *authority;
     
 @end
 
@@ -117,13 +116,7 @@
     }
     NSArray *array = _dataArray[indexPath.section][@"array"];
     NSDictionary *item = array[indexPath.row];
-    if (indexPath.section == 2 && indexPath.row == 1 && self.authority) {
-        NSMutableDictionary *tempItem = [item mutableCopy];
-        [tempItem setValue:self.authority forKey:@"value"];
-        [cell renderUIWithData:tempItem];
-    }else{
-        [cell renderUIWithData:item];
-    }
+    [cell renderUIWithData:item];
     
     DoraemonManagerServerType currentType = [[DoraemonManager shareInstance] currentServerType];
     

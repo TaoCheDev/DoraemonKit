@@ -29,6 +29,7 @@
 		DAFE052D21BD4A4D00F97A59 /* DoraemonDemoMockGPSAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFE051E21BD4A4C00F97A59 /* DoraemonDemoMockGPSAnnotation.m */; };
 		DAFE052E21BD4A4D00F97A59 /* DoraemonDemoMockGPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFE052121BD4A4C00F97A59 /* DoraemonDemoMockGPSViewController.m */; };
 		DAFE052F21BD4A4D00F97A59 /* DoraemonDemoPerformanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFE052321BD4A4C00F97A59 /* DoraemonDemoPerformanceViewController.m */; };
+		FB60317C2229267C0045C881 /* YXTestUsers.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB60317B2229267B0045C881 /* YXTestUsers.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		DAFE052421BD4A4C00F97A59 /* DoraemonDemoPerformanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoraemonDemoPerformanceViewController.h; sourceTree = "<group>"; };
 		DB18BA61EBA817FD46B5C41B /* Pods-DoraemonKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoraemonKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoraemonKitDemo/Pods-DoraemonKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		DBA563858BAABEC9BC885911 /* Pods-DoraemonKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoraemonKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoraemonKitDemo/Pods-DoraemonKitDemo.release.xcconfig"; sourceTree = "<group>"; };
+		FB60317B2229267B0045C881 /* YXTestUsers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YXTestUsers.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				DAE7BFAA20205BCF008D49D8 /* Util */,
 				DA0C6F371FDEBE2500F43588 /* Plugin */,
 				DA0C6F311FDEBC2E00F43588 /* LaunchScreen.storyboard */,
+				FB60317B2229267B0045C881 /* YXTestUsers.plist */,
 				DAC8A87A1FDE2C3B00F03E6F /* AppDelegate.h */,
 				DAC8A87B1FDE2C3B00F03E6F /* AppDelegate.m */,
 				DAC8A8831FDE2C3B00F03E6F /* Assets.xcassets */,
@@ -348,6 +351,7 @@
 				DA63F1D321C8CF9500E0D9F5 /* huoying.mp4 in Resources */,
 				DA0C6F331FDEBC2E00F43588 /* LaunchScreen.storyboard in Resources */,
 				DAC8A8841FDE2C3B00F03E6F /* Assets.xcassets in Resources */,
+				FB60317C2229267C0045C881 /* YXTestUsers.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
