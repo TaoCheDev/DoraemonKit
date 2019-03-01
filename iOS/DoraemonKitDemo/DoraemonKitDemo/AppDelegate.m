@@ -41,6 +41,12 @@
        // DDLogInfo(@"点击添加埋点22222");
     }
     
+    [[DoraemonManager shareInstance] setTestServers:@[@"hahaha"] testReleaseSevers:@[@"rrrr"] releaseServers:@[@"gg"]];
+    [DoraemonManager shareInstance].serverChangedBlock = ^(NSArray *currentServers) {
+        NSLog(@"😃😃");
+        NSLog(@"%@ \n\n", currentServers);
+    };
+    
     
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

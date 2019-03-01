@@ -125,20 +125,30 @@
         [cell renderUIWithData:item];
     }
     
-    NSString *serverDomain = [DoraemonManager shareInstance].servers[indexPath.row];
+    DoraemonManagerServerType currentType = [[DoraemonManager shareInstance] currentServerType];
     
-    cell.accessoryType = [serverDomain isEqualToString:[DoraemonManager shareInstance].currentServerDomain] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    cell.backgroundColor = [serverDomain isEqualToString:[DoraemonManager shareInstance].currentServerDomain] ? [UIColor colorWithWhite:0 alpha:0.1] : [UIColor whiteColor];
+    cell.accessoryType = (currentType == indexPath.row) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    cell.backgroundColor = (currentType == indexPath.row) ? [UIColor colorWithWhite:0 alpha:0.1] : [UIColor whiteColor];
     
     return cell;
 }
     
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [[DoraemonManager shareInstance] setCurrentServerType:indexPath.row];
+    [DoraemonManager shareInstance].serverChangedBlock([[DoraemonManager shareInstance] currentServers]);
     [tableView reloadData];
     
-    NSString *serverDomain = [DoraemonManager shareInstance].servers[indexPath.row];
-    [DoraemonManager shareInstance].currentServerDomain = serverDomain;
-    [DoraemonManager shareInstance].serverChangedBlock(serverDomain);
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"该功能需要重启App才能生效" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        exit(0);
+    }];
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

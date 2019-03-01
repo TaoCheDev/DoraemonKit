@@ -7,8 +7,11 @@
 
 #import <Foundation/Foundation.h>
 
+static const NSString *DMKeyServers = @"DMKey_Servers";
+static const NSString *DMKeyCurrentServerType = @"DMKey_CurrentServerType";
+
 typedef void (^DoraemonH5DoorBlock)(NSString *);
-typedef void (^DoraemonServerChangedBlock)(NSString *serverDomain);
+typedef void (^DoraemonServerChangedBlock)(NSArray *currentServers);
 
 typedef NS_ENUM(NSUInteger, DoraemonManagerServerType) {
     DoraemonManagerServerType_Test,
@@ -90,11 +93,9 @@ typedef NS_ENUM(NSUInteger, DoraemonManagerPluginType) {
 - (void)installWithCustomBlock:(void(^)())customBlock;
 
 @property (nonatomic,strong) NSMutableArray *dataArray;
-@property (nonatomic, copy, readonly) NSMutableArray *servers; /**< 服务器地址 */
 
 @property (nonatomic, copy) DoraemonH5DoorBlock h5DoorBlock;
 @property (nonatomic, copy) DoraemonServerChangedBlock serverChangedBlock; /**< 切换环境回调 */
-@property (nonatomic, copy) NSString *currentServerDomain; /**< 当前服务器域名 */
 
 - (void)addPluginWithTitle:(NSString *)title icon:(NSString *)iconName desc:(NSString *)desc pluginName:(NSString *)entryName atModule:(NSString *)moduleName;
 
@@ -117,14 +118,31 @@ typedef NS_ENUM(NSUInteger, DoraemonManagerPluginType) {
 /**
  配置服务器地址
 
- @param testServer 测试服务器
- @param testReleaseSever 仿真服务器
- @param releaseServer 正式服务器
- @param currentServerType 当前服务器
+ @param testServers 测试服务器
+ @param testReleaseSevers 仿真服务器
+ @param releaseServers 正式服务器
  */
-- (void)configTestServer:(NSString *)testServer
-        testReleaseSever:(NSString *)testReleaseSever
-           releaseServer:(NSString *)releaseServer
-       currentServerType:(DoraemonManagerServerType)currentServerType;
+- (void)setTestServers:(NSArray<NSString *> *)testServers testReleaseSevers:(NSArray<NSString *> *)testReleaseSevers releaseServers:(NSArray<NSString *> *)releaseServers;
+
+/**
+ 当前服务器集合
+
+ @return 当前服务器集合
+ */
+- (NSArray<NSString *> *)currentServers;
+
+/**
+ 当前服务器类别
+
+ @return 当前服务器类别
+ */
+- (DoraemonManagerServerType)currentServerType;
+
+/**
+ 设置服务器类别
+
+ @param serverType 设置服务器类别
+ */
+- (void)setCurrentServerType:(DoraemonManagerServerType)serverType;
 
 @end

@@ -51,8 +51,6 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
 
 @property (nonatomic, copy) DoraemonPerformanceBlock performanceBlock;
     
-@property (nonatomic, copy) NSMutableArray *servers; /**< 服务器地址 */
-    
 @end
 
 @implementation DoraemonManager
@@ -182,11 +180,41 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
 }
     
 /** 配置服务器地址 */
-- (void)configTestServer:(NSString *)testServer testReleaseSever:(NSString *)testReleaseSever releaseServer:(NSString *)releaseServer currentServerType:(DoraemonManagerServerType)currentServerType {
-    [self.servers replaceObjectAtIndex:0 withObject:testServer ? : @""];
-    [self.servers replaceObjectAtIndex:1 withObject:testReleaseSever ? : @""];
-    [self.servers replaceObjectAtIndex:2 withObject:releaseServer ? : @""];
-    self.currentServerDomain = self.servers[currentServerType];
+- (void)setTestServers:(NSArray *)testServers testReleaseSevers:(NSArray *)testReleaseSevers releaseServers:(NSArray *)releaseServers {
+    NSArray *servers = @[testServers ? : @[], testReleaseSevers ? : @[], releaseServers ? : @[]];
+    [[NSUserDefaults standardUserDefaults] setObject:servers forKey:DMKeyServers];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+/**
+ 当前服务器集合
+ 
+ @return 当前服务器集合
+ */
+- (NSArray<NSString *> *)currentServers {
+    NSArray *servers = [[NSUserDefaults standardUserDefaults] objectForKey:DMKeyServers];
+    DoraemonManagerServerType serverType = [self currentServerType];
+    return servers[serverType];
+}
+
+/**
+ 当前服务器类别
+ 
+ @return 当前服务器类别
+ */
+- (DoraemonManagerServerType)currentServerType {
+    DoraemonManagerServerType serverType = [[[NSUserDefaults standardUserDefaults] objectForKey:DMKeyCurrentServerType] intValue];
+    return serverType;
+}
+
+/**
+ 设置服务器类别
+ 
+ @param serverType 设置服务器类别
+ */
+- (void)setCurrentServerType:(DoraemonManagerServerType)serverType {
+    [[NSUserDefaults standardUserDefaults] setObject:@(serverType) forKey:DMKeyCurrentServerType];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 /**
@@ -491,15 +519,6 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
     model.atModule = dataArray[4][kAtModule];
     
     return model;
-}
-    
-#pragma mark - Getter
-    
-- (NSMutableArray *)servers {
-    if (!_servers) {
-        _servers = [NSMutableArray arrayWithObjects:@"", @"", @"", nil];
-    }
-    return _servers;
 }
 
 @end
