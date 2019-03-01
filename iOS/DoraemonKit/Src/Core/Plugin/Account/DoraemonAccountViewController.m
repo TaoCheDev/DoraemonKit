@@ -121,7 +121,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if ([DoraemonManager shareInstance].handleDidSelectedTestUserBlock) {
-        [DoraemonManager shareInstance].handleDidSelectedTestUserBlock(_dataArray[indexPath.section][@"array"][indexPath.row]);
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"YXTestUsers" ofType:@"plist"];
+        NSArray *users = [NSArray arrayWithContentsOfFile:path];
+        [DoraemonManager shareInstance].handleDidSelectedTestUserBlock(users[indexPath.row]);
     }
     
     [[DoraemonManager shareInstance] hiddenHomeWindow];
