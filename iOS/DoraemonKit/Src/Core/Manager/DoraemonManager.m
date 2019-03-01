@@ -353,14 +353,14 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
                            @(DoraemonManagerPluginType_Server) : @[
                                    @{kTitle:@"环境切换"},
                                    @{kDesc:@"切换服务器地址"},
-                                   @{kIcon:@"doraemon_default"},
+                                   @{kIcon:@"doraemon_server"},
                                    @{kPluginName:@"DoraemonServerPlugin"},
                                    @{kAtModule:@"业务工具"}
                                    ],
                            @(DoraemonManagerPluginType_Account) : @[
                                    @{kTitle:@"账号切换"},
                                    @{kDesc:@"切换账号"},
-                                   @{kIcon:@"doraemon_default"},
+                                   @{kIcon:@"doraemon_user"},
                                    @{kPluginName:@"DoraemonAccountPlugin"},
                                    @{kAtModule:@"业务工具"}
                                    ],
