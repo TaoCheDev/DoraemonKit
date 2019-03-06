@@ -129,10 +129,6 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
     
     //监听DoraemonStateBar点击事件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quickOpenLogVC:) name:DoraemonQuickOpenLogVCNotification object:nil];
-    
-    //统计开源项目使用量 不用于任何恶意行为
-    [DoraemonStatisticsUtil upLoadUserInfo];
-
 }
 
 
