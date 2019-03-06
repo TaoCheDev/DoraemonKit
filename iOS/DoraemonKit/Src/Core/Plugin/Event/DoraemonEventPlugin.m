@@ -12,7 +12,7 @@
 
 - (void)pluginDidLoad:(NSDictionary *)itemData {
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"DoraemonEventPlugin" object:nil];
+    [[DoraemonManager shareInstance] hiddenHomeWindow];
     
     if ([DoraemonManager shareInstance].handleClickEventButtonBlock) {
         [DoraemonManager shareInstance].handleClickEventButtonBlock(itemData[@"name"]);
