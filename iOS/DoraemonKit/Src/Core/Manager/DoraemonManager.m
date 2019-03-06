@@ -265,12 +265,18 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
     }
 }
 
-- (void)addPluginWithTitle:(NSString *)title atModule:(NSString *)moduleName defaultValue:(BOOL)isOn {
+/** 添加开关，结合handleSwithValueChangedBlock使用 */
+- (void)addSwitchPluginWithTitle:(NSString *)title atModule:(NSString *)moduleName defaultValue:(BOOL)isOn {
     
     [[NSUserDefaults standardUserDefaults] setValue:@(isOn) forKey:title];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self addPluginWithTitle:title icon:nil desc:title pluginName:@"DoraemonSwitchPlugin" atModule:moduleName];
+}
+
+/** 添加点击事件的按钮 */
+- (void)addEventPluginWithTitle:(NSString *)title icon:(NSString *)iconName atModule:(NSString *)moduleName {
+    [self addPluginWithTitle:title icon:iconName desc:title pluginName:@"DoraemonEventPlugin" atModule:moduleName];
 }
 
 - (void)removePluginWithPluginType:(DoraemonManagerPluginType)pluginType

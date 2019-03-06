@@ -95,6 +95,7 @@ typedef NS_ENUM(NSUInteger, DoraemonManagerPluginType) {
 @property (nonatomic, copy) DoraemonH5DoorBlock h5DoorBlock;
 @property (nonatomic, copy) void (^handleDidSelectedTestUserBlock)(NSDictionary *userInfo); /**< 已选择切换测试账号Block */
 @property (nonatomic, copy) void (^handleSwithValueChangedBlock)(NSString *title, BOOL isOn); /**< 开关选择器状态发生变化Block */
+@property (nonatomic, copy) void (^handleClickEventButtonBlock)(NSString *title); /**< 点击按钮类型Block */
 
 - (void)addPluginWithTitle:(NSString *)title icon:(NSString *)iconName desc:(NSString *)desc pluginName:(NSString *)entryName atModule:(NSString *)moduleName;
 
@@ -105,7 +106,16 @@ typedef NS_ENUM(NSUInteger, DoraemonManagerPluginType) {
  @param moduleName 类别
  @param isOn 默认值 YES or NO
  */
-- (void)addPluginWithTitle:(NSString *)title atModule:(NSString *)moduleName defaultValue:(BOOL)isOn;
+- (void)addSwitchPluginWithTitle:(NSString *)title atModule:(NSString *)moduleName defaultValue:(BOOL)isOn;
+
+/**
+ 添加点击事件的按钮
+
+ @param title 标题
+ @param iconName 图片icon
+ @param moduleName 类别
+ */
+- (void)addEventPluginWithTitle:(NSString *)title icon:(NSString *)iconName atModule:(NSString *)moduleName;
 
 - (void)removePluginWithPluginType:(DoraemonManagerPluginType)pluginType;
 

@@ -10,7 +10,7 @@
 
 @implementation DoraemonSwitchPlugin
 
-- (void)pluginDidLoad{
+- (void)pluginDidLoad {
     
 }
 
