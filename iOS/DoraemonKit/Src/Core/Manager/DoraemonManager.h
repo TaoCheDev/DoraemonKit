@@ -94,10 +94,21 @@ typedef NS_ENUM(NSUInteger, DoraemonManagerPluginType) {
 @property (nonatomic,strong) NSMutableArray *dataArray;
 @property (nonatomic, copy) DoraemonH5DoorBlock h5DoorBlock;
 @property (nonatomic, copy) void (^handleDidSelectedTestUserBlock)(NSDictionary *userInfo); /**< 已选择切换测试账号Block */
+@property (nonatomic, copy) void (^handleSwithValueChangedBlock)(NSString *title, BOOL isOn); /**< 开关选择器状态发生变化Block */
 
 - (void)addPluginWithTitle:(NSString *)title icon:(NSString *)iconName desc:(NSString *)desc pluginName:(NSString *)entryName atModule:(NSString *)moduleName;
 
+/**
+ 添加开关，结合handleSwithValueChangedBlock使用
+
+ @param title 开关名称
+ @param moduleName 类别
+ @param isOn 默认值 YES or NO
+ */
+- (void)addPluginWithTitle:(NSString *)title atModule:(NSString *)moduleName defaultValue:(BOOL)isOn;
+
 - (void)removePluginWithPluginType:(DoraemonManagerPluginType)pluginType;
+
 // 推荐使用 removePluginWithPluginType 方法
 - (void)removePluginWithPluginName:(NSString *)pluginName atModule:(NSString *)moduleName;
 

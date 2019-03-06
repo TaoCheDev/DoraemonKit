@@ -265,6 +265,14 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
     }
 }
 
+- (void)addPluginWithTitle:(NSString *)title atModule:(NSString *)moduleName defaultValue:(BOOL)isOn {
+    
+    [[NSUserDefaults standardUserDefaults] setValue:@(isOn) forKey:title];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self addPluginWithTitle:title icon:nil desc:title pluginName:@"DoraemonSwitchPlugin" atModule:moduleName];
+}
+
 - (void)removePluginWithPluginType:(DoraemonManagerPluginType)pluginType
 {
     DoraemonManagerPluginTypeModel *model = [self getDefaultPluginDataWithPluginType:pluginType];

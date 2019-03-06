@@ -38,17 +38,29 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemClick)];
         self.userInteractionEnabled = YES;
         [self addGestureRecognizer:tap];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:@"DoraemonSwitchPluginValueChanged" object:nil];
     }
     return self;
+}
+
+- (void)reloadData {
+    [self renderUIWithData:self.itemData];
 }
 
 - (void)renderUIWithData: (NSDictionary *)data{
     _itemData = data;
     NSString *iconName = data[@"icon"];
-    _imageView.image = [UIImage doraemon_imageNamed:iconName];
-    
     NSString *name = data[@"name"];
-    _titleLabel.text = name;
+    
+    if ([data[@"pluginName"] isEqualToString:@"DoraemonSwitchPlugin"]) {
+        BOOL isOn = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"YXDoraemon_%@", data[@"name"]]] boolValue];
+        _imageView.image = [UIImage doraemon_imageNamed:isOn ? @"doraemon_on" : @"doraemon_off"];
+        _titleLabel.text = [NSString stringWithFormat:@"%@%@", (isOn ? @"关闭" : @"开启"), name];
+    } else {
+        _imageView.image = [UIImage doraemon_imageNamed:iconName];
+        _titleLabel.text = name;
+    }
 }
 
 - (void)itemClick{
@@ -136,5 +148,8 @@
     return totalHeight;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

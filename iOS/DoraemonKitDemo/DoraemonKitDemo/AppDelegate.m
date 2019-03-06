@@ -25,8 +25,17 @@
     for (int i=0; i<10; i++) {
         //DDLogInfo(@"点击添加埋点11111");
     }
-    [[DoraemonManager shareInstance] addPluginWithTitle:@"测试插件" icon:@"doraemon_default" desc:@"测试插件" pluginName:@"TestPlugin" atModule:@"业务工具"];
-    [[DoraemonManager shareInstance] addStartPlugin:@"StartPlugin"];
+//    [[DoraemonManager shareInstance] addPluginWithTitle:@"测试插件" icon:@"doraemon_guanbi" desc:@"测试插件" pluginName:@"TestPlugin" atModule:@"业务工具"];
+    [[DoraemonManager shareInstance] addPluginWithTitle:@"功能开关1" atModule:@"业务工具" defaultValue:YES];
+    [[DoraemonManager shareInstance] addPluginWithTitle:@"功能开关2" atModule:@"业务工具" defaultValue:NO];
+    [DoraemonManager shareInstance].handleSwithValueChangedBlock = ^(NSString *title, BOOL isOn) {
+        if ([title isEqualToString:@"测试1"]) {
+            NSLog(@"😃😃");
+            NSLog(@"%@,%@ \n\n", @"啊哈哈哈，进来了", @(isOn));
+        }
+    };
+    
+    
     [[DoraemonManager shareInstance] install];
     
     [DoraemonManager shareInstance].handleDidSelectedTestUserBlock = ^(NSDictionary *userInfo) {
