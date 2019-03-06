@@ -44,8 +44,13 @@
 }
 
 - (void)initUI{
+    
+    // YXKit：添加开发者工具标题
+    self.title = DoraemonLocalizedString(@"开发者工具(淘车iOSv1.0)");
+    
     self.view.backgroundColor = [UIColor doraemon_colorWithString:@"#F4F5F6"];
-    _scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+    // YXKit：显示标题栏，scrollview需要下移
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, IPHONE_NAVIGATIONBAR_HEIGHT, DoraemonScreenWidth, DoraemonScreenHeight)];
     [self.view addSubview:_scrollView];
     
     CGFloat offsetY = kDoraemonSizeFrom750(32);
@@ -82,6 +87,11 @@
     [[DoraemonUtil topViewControllerForKeyWindow] presentViewController:alertController animated:YES completion:nil];
     
     [[DoraemonHomeWindow shareInstance] hide];
+}
+
+// YXKit：显示开发者工具标题
+- (BOOL)needBigTitleView {
+    return YES;
 }
 
 @end

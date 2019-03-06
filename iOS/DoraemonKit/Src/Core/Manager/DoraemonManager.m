@@ -222,7 +222,8 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
  */
 - (void)initEntry{
     _entryView = [[DoraemonEntryView alloc] init];
-    [_entryView makeKeyAndVisible];
+    // YXKit：默认隐藏按钮，采用摇一摇方式打开
+//    [_entryView makeKeyAndVisible];
 }
 
 - (void)addStartPlugin:(NSString *)pluginName{
