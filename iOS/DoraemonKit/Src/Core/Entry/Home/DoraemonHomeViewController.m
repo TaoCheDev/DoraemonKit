@@ -50,7 +50,7 @@
     
     self.view.backgroundColor = [UIColor doraemon_colorWithString:@"#F4F5F6"];
     // YXKit：显示标题栏，scrollview需要下移
-    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, IPHONE_NAVIGATIONBAR_HEIGHT, DoraemonScreenWidth, DoraemonScreenHeight)];
+    _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, IPHONE_NAVIGATIONBAR_HEIGHT, DoraemonScreenWidth, DoraemonScreenHeight - IPHONE_NAVIGATIONBAR_HEIGHT)];
     [self.view addSubview:_scrollView];
     
     CGFloat offsetY = kDoraemonSizeFrom750(32);
