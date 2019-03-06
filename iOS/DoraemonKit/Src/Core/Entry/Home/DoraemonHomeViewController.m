@@ -77,7 +77,7 @@
     
     // YXKit：摇一摇说明
     UILabel *desLabel = [[UILabel alloc] init];
-    desLabel.text = @"摇一摇可打开开发者工具";
+    desLabel.text = @"摇一摇可打开开发者工具，正式包无法打开";
     desLabel.textColor = [UIColor doraemon_black_3];
     desLabel.font = [UIFont systemFontOfSize:13];
     [desLabel sizeToFit];
