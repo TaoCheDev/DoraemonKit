@@ -55,7 +55,7 @@
     
     if ([data[@"pluginName"] isEqualToString:@"DoraemonSwitchPlugin"]) {
         BOOL isOn = [[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"YXDoraemon_%@", data[@"name"]]] boolValue];
-        _imageView.image = [UIImage doraemon_imageNamed:isOn ? @"doraemon_on" : @"doraemon_off"];
+        _imageView.image = [UIImage doraemon_imageNamed:isOn ? @"doraemon_off" : @"doraemon_on"];
         _titleLabel.text = [NSString stringWithFormat:@"%@%@", (isOn ? @"关闭" : @"开启"), name];
     } else {
         _imageView.image = [UIImage doraemon_imageNamed:iconName];
