@@ -29,7 +29,6 @@
 		DAFE052D21BD4A4D00F97A59 /* DoraemonDemoMockGPSAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFE051E21BD4A4C00F97A59 /* DoraemonDemoMockGPSAnnotation.m */; };
 		DAFE052E21BD4A4D00F97A59 /* DoraemonDemoMockGPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFE052121BD4A4C00F97A59 /* DoraemonDemoMockGPSViewController.m */; };
 		DAFE052F21BD4A4D00F97A59 /* DoraemonDemoPerformanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAFE052321BD4A4C00F97A59 /* DoraemonDemoPerformanceViewController.m */; };
-		FB60317C2229267C0045C881 /* YXTestUsers.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB60317B2229267B0045C881 /* YXTestUsers.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +76,6 @@
 		DAFE052421BD4A4C00F97A59 /* DoraemonDemoPerformanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoraemonDemoPerformanceViewController.h; sourceTree = "<group>"; };
 		DB18BA61EBA817FD46B5C41B /* Pods-DoraemonKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoraemonKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoraemonKitDemo/Pods-DoraemonKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		DBA563858BAABEC9BC885911 /* Pods-DoraemonKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoraemonKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoraemonKitDemo/Pods-DoraemonKitDemo.release.xcconfig"; sourceTree = "<group>"; };
-		FB60317B2229267B0045C881 /* YXTestUsers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = YXTestUsers.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +163,6 @@
 				DAE7BFAA20205BCF008D49D8 /* Util */,
 				DA0C6F371FDEBE2500F43588 /* Plugin */,
 				DA0C6F311FDEBC2E00F43588 /* LaunchScreen.storyboard */,
-				FB60317B2229267B0045C881 /* YXTestUsers.plist */,
 				DAC8A87A1FDE2C3B00F03E6F /* AppDelegate.h */,
 				DAC8A87B1FDE2C3B00F03E6F /* AppDelegate.m */,
 				DAC8A8831FDE2C3B00F03E6F /* Assets.xcassets */,
@@ -298,8 +295,8 @@
 				DAC8A8731FDE2C3B00F03E6F /* Sources */,
 				DAC8A8741FDE2C3B00F03E6F /* Frameworks */,
 				DAC8A8751FDE2C3B00F03E6F /* Resources */,
-				5DBCCF196C0972C99DBCA970 /* [CP] Embed Pods Frameworks */,
-				28DE4E1AB5A567814416F039 /* [CP] Copy Pods Resources */,
+				4338E62332869AF074F6B38C /* [CP] Copy Pods Resources */,
+				79B249EB70E5D465A686C19B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -351,27 +348,22 @@
 				DA63F1D321C8CF9500E0D9F5 /* huoying.mp4 in Resources */,
 				DA0C6F331FDEBC2E00F43588 /* LaunchScreen.storyboard in Resources */,
 				DAC8A8841FDE2C3B00F03E6F /* Assets.xcassets in Resources */,
-				FB60317C2229267C0045C881 /* YXTestUsers.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		28DE4E1AB5A567814416F039 /* [CP] Copy Pods Resources */ = {
+		4338E62332869AF074F6B38C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DoraemonKitDemo/Pods-DoraemonKitDemo-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/DoraemonKit/DoraemonKit.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DoraemonKit.bundle",
 			);
@@ -398,20 +390,16 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5DBCCF196C0972C99DBCA970 /* [CP] Embed Pods Frameworks */ = {
+		79B249EB70E5D465A686C19B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DoraemonKitDemo/Pods-DoraemonKitDemo-frameworks.sh",
 				"${PODS_ROOT}/../../DoraemonKit/Framework/DoraemonLoadAnalyze.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DoraemonLoadAnalyze.framework",
 			);
@@ -583,11 +571,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DoraemonKitDemo/DoraemonKitDemo-PrefixHeader.pch";
 				INFOPLIST_FILE = DoraemonKitDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yixiang.DoraemonKitDemoX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -602,11 +589,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DoraemonKitDemo/DoraemonKitDemo-PrefixHeader.pch";
 				INFOPLIST_FILE = DoraemonKitDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yixiang.DoraemonKitDemoX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
