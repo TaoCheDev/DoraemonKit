@@ -74,6 +74,15 @@
     offsetY += closeBtn.doraemon_height+kDoraemonSizeFrom750(30);
     
     _scrollView.contentSize = CGSizeMake(self.view.doraemon_width, offsetY);
+    
+    // YXKit：摇一摇说明
+    UILabel *desLabel = [[UILabel alloc] init];
+    desLabel.text = @"摇一摇可打开开发者工具";
+    desLabel.textColor = [UIColor doraemon_black_3];
+    desLabel.font = [UIFont systemFontOfSize:13];
+    [desLabel sizeToFit];
+    desLabel.frame = CGRectMake(17, (IS_IPHONE_X_Series ? IPHONE_NAVIGATIONBAR_HEIGHT - 15 : _scrollView.frame.origin.y), desLabel.frame.size.width, desLabel.frame.size.height);
+    [self.view addSubview:desLabel];
 }
 
 - (void)close{
