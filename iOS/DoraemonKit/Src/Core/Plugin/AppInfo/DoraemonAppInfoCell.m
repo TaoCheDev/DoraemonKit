@@ -30,6 +30,8 @@
         [self.contentView addSubview:self.titleLabel];
         
         self.valueLabel = [[UILabel alloc] init];
+        self.valueLabel.numberOfLines = 0;
+        self.valueLabel.adjustsFontSizeToFitWidth = YES;
         self.valueLabel.textColor = [UIColor doraemon_black_2];
         self.valueLabel.font = [UIFont systemFontOfSize:kDoraemonSizeFrom750(32)];
         [self.contentView addSubview:self.valueLabel];

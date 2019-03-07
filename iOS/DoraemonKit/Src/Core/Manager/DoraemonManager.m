@@ -179,7 +179,15 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
     
 /** 配置服务器地址 */
 - (void)setTestServers:(NSArray *)testServers testReleaseSevers:(NSArray *)testReleaseSevers releaseServers:(NSArray *)releaseServers {
-    NSArray *servers = @[testServers ? : @[], testReleaseSevers ? : @[], releaseServers ? : @[]];
+    
+    /** 自定义地址 */
+    NSArray *cache_customServer = nil;
+    NSArray *cache_servers = [[NSUserDefaults standardUserDefaults] objectForKey:DMKeyServers];
+    if (cache_servers.count > 3) {
+        cache_customServer = cache_servers[3];
+    }
+    
+    NSArray *servers = @[testServers ? : @[], testReleaseSevers ? : @[], releaseServers ? : @[], cache_customServer ? : @[]];
     [[NSUserDefaults standardUserDefaults] setObject:servers forKey:DMKeyServers];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

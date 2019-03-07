@@ -55,7 +55,9 @@
         NSLog(@"%@ \n\n", userInfo);
     };
     
-    [[DoraemonManager shareInstance] setTestServers:@[@"hahaha"] testReleaseSevers:@[@"rrrr"] releaseServers:@[@"gg"]];
+    [[DoraemonManager shareInstance] setTestServers:@[@"https://www.baidu.com", @"https://www.google.com.hk", @"https://mail.163.com"]
+                                  testReleaseSevers:@[@"https://www.baidu.com", @"https://www.google.com.hk", @"https://mail.163.com"]
+                                     releaseServers:@[@"https://www.baidu.com", @"https://www.google.com.hk", @"https://mail.163.com"]];
     
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
