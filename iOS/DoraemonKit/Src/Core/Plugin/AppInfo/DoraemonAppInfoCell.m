@@ -49,8 +49,9 @@
     [self.titleLabel sizeToFit];
     [self.valueLabel sizeToFit];
     
+    CGFloat width = self.valueLabel.doraemon_width > (DoraemonScreenWidth - 85) ? (DoraemonScreenWidth - 85) : self.valueLabel.doraemon_width;
     self.titleLabel.frame = CGRectMake(kDoraemonSizeFrom750(32), 0, self.titleLabel.doraemon_width, [[self class] cellHeight]);
-    self.valueLabel.frame = CGRectMake(DoraemonScreenWidth-kDoraemonSizeFrom750(32)-self.valueLabel.doraemon_width, 0, self.valueLabel.doraemon_width > (DoraemonScreenWidth - 80) ? (DoraemonScreenWidth - 80) : self.valueLabel.doraemon_width, [[self class] cellHeight]);
+    self.valueLabel.frame = CGRectMake(DoraemonScreenWidth-kDoraemonSizeFrom750(32)-width, 0, width, [[self class] cellHeight]);
 }
 
 + (CGFloat)cellHeight{
