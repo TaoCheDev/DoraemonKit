@@ -10,7 +10,6 @@
 
 @implementation UIViewController (YXDoraemonViewController)
 
-#ifdef DEBUG
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (event.subtype == UIEventSubtypeMotionShake) {
         if ([DoraemonHomeWindow shareInstance].hidden) {
@@ -20,6 +19,5 @@
         }
     }
 }
-#endif
 
 @end
