@@ -46,7 +46,7 @@
 - (void)initUI{
     
     // YXKit：添加开发者工具标题
-    self.title = DoraemonLocalizedString(@"开发者工具(淘车iOSv1.0)");
+    self.title = DoraemonLocalizedString(@"开发者工具(v1.0)");
     
     self.view.backgroundColor = [UIColor doraemon_colorWithString:@"#F4F5F6"];
     // YXKit：显示标题栏，scrollview需要下移
