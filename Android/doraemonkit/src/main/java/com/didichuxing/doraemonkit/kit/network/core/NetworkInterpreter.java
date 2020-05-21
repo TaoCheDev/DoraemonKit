@@ -1,6 +1,6 @@
 package com.didichuxing.doraemonkit.kit.network.core;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -26,16 +26,16 @@ public class NetworkInterpreter {
     private ResourceTypeHelper mResourceTypeHelper;
 
     public void httpExchangeFailed(int requestId, String s) {
-        LogHelper.i(TAG, "[httpExchangeFailed] requestId: " + requestId + " error: " + s);
+        //LogHelper.i(TAG, "[httpExchangeFailed] requestId: " + requestId + " error: " + s);
     }
 
     public void responseReadFinished(int requestId, NetworkRecord record, ByteArrayOutputStream outputStream) {
         if (outputStream != null) {
             record.responseLength = outputStream.size();
             record.mResponseBody = outputStream.toString();
-            LogHelper.i(TAG, "[responseReadFinished] body: " + record.mResponseBody.toString().length());
+            //LogHelper.i(TAG, "[responseReadFinished] body: " + record.mResponseBody.toString().length());
         } else {
-            LogHelper.i(TAG, "[responseReadFinished] outputStream is null request id: " + requestId);
+            //LogHelper.i(TAG, "[responseReadFinished] outputStream is null request id: " + requestId);
         }
     }
 
@@ -92,19 +92,20 @@ public class NetworkInterpreter {
         requestJSON.url = request.url();
         requestJSON.method = request.method();
         requestJSON.headers = formatHeadersAsString(request);
+        requestJSON.encode = request.firstHeaderValue("Content-Encoding");
         requestJSON.postData = readBodyAsString(request);
         record.mRequest = requestJSON;
         record.startTime = System.currentTimeMillis();
         record.requestLength = readBodyLength(request);
-        Log.e(TAG, requestJSON.toString());
+        //Log.e(TAG, requestJSON.toString());
     }
 
-    public void fetRequestBody(NetworkRecord record, NetworkInterpreter.InspectorRequest request) {
+    public void fetRequestBody(NetworkRecord record, byte[] request) {
         if (record.mRequest != null) {
             record.mRequest.postData = readBodyAsString(request);
             record.requestLength = readBodyLength(request);
             NetworkManager.get().updateRecord(record, false);
-            Log.e(TAG, record.mRequest.postData);
+            //Log.e(TAG, record.mRequest.postData);
         }
     }
 
@@ -132,7 +133,7 @@ public class NetworkInterpreter {
         record.mResponse = responseJSON;
         record.endTime = System.currentTimeMillis();
         NetworkManager.get().updateRecord(record, false);
-        Log.e(TAG, responseJSON.toString());
+        //Log.e(TAG, responseJSON.toString());
     }
 
     private ResourceTypeHelper getResourceTypeHelper() {
@@ -163,11 +164,17 @@ public class NetworkInterpreter {
                 return new String(body, Utf8Charset.INSTANCE);
             }
         } catch (IOException | OutOfMemoryError e) {
-//                CLog.writeToConsole(
-//                        peerManager,
-//                        Console.MessageLevel.WARNING,
-//                        Console.MessageSource.NETWORK,
-//                        "Could not reproduce POST body: " + e);
+        }
+        return null;
+    }
+
+    private String readBodyAsString(
+            byte[] body) {
+        try {
+            if (body != null) {
+                return new String(body, Utf8Charset.INSTANCE);
+            }
+        } catch (OutOfMemoryError e) {
         }
         return null;
     }
@@ -180,15 +187,20 @@ public class NetworkInterpreter {
                 return body.length;
             }
         } catch (IOException | OutOfMemoryError e) {
-//                CLog.writeToConsole(
-//                        peerManager,
-//                        Console.MessageLevel.WARNING,
-//                        Console.MessageSource.NETWORK,
-//                        "Could not reproduce POST body: " + e);
         }
         return 0;
     }
 
+    private long readBodyLength(
+            byte[] body) {
+        try {
+            if (body != null) {
+                return body.length;
+            }
+        } catch (OutOfMemoryError e) {
+        }
+        return 0;
+    }
 
     private String getContentType(NetworkInterpreter.InspectorHeaders headers) {
         // This may need to change in the future depending on how cumbersome header simulation

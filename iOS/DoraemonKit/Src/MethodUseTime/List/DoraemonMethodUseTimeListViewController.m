@@ -6,11 +6,11 @@
 //
 
 #import "DoraemonMethodUseTimeListViewController.h"
-#import <DoraemonLoadAnalyze/DoraemonLoadAnalyze.h>
 #import "DoraemonDefine.h"
 #import "DoraemonMethodUseTimeListCell.h"
+#import "DoraemonMethodUseTimeManager.h"
 
-@interface DoraemonMethodUseTimeListViewController ()
+@interface DoraemonMethodUseTimeListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, copy) NSArray *loadModelArray;
 @property (nonatomic, strong) UITableView *tableView;
@@ -21,12 +21,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Load耗时检测记录";
+    self.title = DoraemonLocalizedString(@"Load耗时检测记录") ;
     
-    _loadModelArray = dlaLoadModels;
+    _loadModelArray = [[DoraemonMethodUseTimeManager sharedInstance] fixLoadModelArray];
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.doraemon_width, self.view.doraemon_height) style:UITableViewStylePlain];
-    self.tableView.backgroundColor = [UIColor whiteColor];
+//    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];

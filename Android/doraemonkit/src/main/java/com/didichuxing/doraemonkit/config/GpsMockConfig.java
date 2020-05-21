@@ -1,8 +1,9 @@
 package com.didichuxing.doraemonkit.config;
 
-import android.content.Context;
-
+import com.didichuxing.doraemonkit.constant.CachesKey;
 import com.didichuxing.doraemonkit.constant.SharedPrefsKey;
+import com.didichuxing.doraemonkit.model.LatLng;
+import com.didichuxing.doraemonkit.util.CacheUtils;
 import com.didichuxing.doraemonkit.util.SharedPrefsUtil;
 
 /**
@@ -10,11 +11,25 @@ import com.didichuxing.doraemonkit.util.SharedPrefsUtil;
  */
 
 public class GpsMockConfig {
-    public static boolean isGPSMockOpen(Context context) {
-        return SharedPrefsUtil.getBoolean(context, SharedPrefsKey.GPS_MOCK_OPEN, false);
+    /**
+     * @return
+     */
+    public static boolean isGPSMockOpen() {
+        return SharedPrefsUtil.getBoolean(SharedPrefsKey.GPS_MOCK_OPEN, false);
     }
 
-    public static void setGPSMockOpen(Context context, boolean open) {
-        SharedPrefsUtil.putBoolean(context, SharedPrefsKey.GPS_MOCK_OPEN, open);
+    /**
+     * @param open
+     */
+    public static void setGPSMockOpen(boolean open) {
+        SharedPrefsUtil.putBoolean(SharedPrefsKey.GPS_MOCK_OPEN, open);
+    }
+
+    public static LatLng getMockLocation() {
+        return (LatLng) CacheUtils.readObject(CachesKey.MOCK_LOCATION);
+    }
+
+    public static void saveMockLocation(LatLng latLng) {
+        CacheUtils.saveObject(CachesKey.MOCK_LOCATION, latLng);
     }
 }

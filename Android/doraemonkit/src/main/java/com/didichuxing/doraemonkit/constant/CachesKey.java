@@ -6,4 +6,6 @@ package com.didichuxing.doraemonkit.constant;
 
 public interface CachesKey {
     String WEB_DOOR_HISTORY = "web_door_history";
+    String CRASH_HISTORY = "crash";
+    String MOCK_LOCATION = "mock_location";
 }
