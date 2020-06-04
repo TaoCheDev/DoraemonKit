@@ -215,6 +215,9 @@ typedef NS_ENUM(NSUInteger, DoraemonManagerPluginType) {
  */
 - (void)setCurrentServerType:(DoraemonManagerServerType)serverType;
 
+/** 设置第一次启动时App的环境 */
+- (void)setInstallAppServerType:(DoraemonManagerServerType)serverType;
+
 @property (nonatomic, assign) int64_t bigImageDetectionSize; // 外部设置大图检测的监控数值  比如监控所有图片大于50K的图片 那么这个值就设置为 50 * 1024；
 
 @property (nonatomic, copy) NSString *startClass; //如果你的启动代理不是默认的AppDelegate,需要传入才能获取正确的启动时间

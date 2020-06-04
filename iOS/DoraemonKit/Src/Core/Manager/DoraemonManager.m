@@ -333,6 +333,14 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+/** 设置第一次启动时App的环境 */
+- (void)setInstallAppServerType:(DoraemonManagerServerType)serverType {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:DMKeyCurrentServerType]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@(serverType) forKey:DMKeyCurrentServerType];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
 - (void)initEntry:(CGPoint) startingPosition{
     _entryWindow = [[DoraemonEntryWindow alloc] initWithStartPoint:startingPosition];
 //    [_entryWindow show];
