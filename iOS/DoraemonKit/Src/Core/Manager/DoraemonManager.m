@@ -300,6 +300,19 @@ typedef void (^DoraemonPerformanceBlock)(NSDictionary *);
     NSArray *servers = @[testServers ? : @[], testReleaseSevers ? : @[], releaseServers ? : @[], cache_customServer ? : @[]];
     [[NSUserDefaults standardUserDefaults] setObject:servers forKey:DMKeyServers];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSDictionary *appInfo = [NSDictionary dictionaryWithDictionary:[NSBundle mainBundle].infoDictionary];
+        NSArray *types = @[@"测试", @"仿真", @"线上"];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, [[UIApplication sharedApplication] statusBarFrame].size.height - 3, 0, 0)];
+        label.text = [NSString stringWithFormat:@"v:%@_%@ %@环境 iOS%@", appInfo[@"CFBundleShortVersionString"], appInfo[@"CFBundleVersion"], types[[DoraemonManager shareInstance].currentServerType], [UIDevice currentDevice].systemVersion];
+        label.font = [UIFont boldSystemFontOfSize:10];
+        label.textColor = [UIColor grayColor];
+        [label sizeToFit];
+        label.userInteractionEnabled = NO;
+        [[UIApplication sharedApplication].keyWindow addSubview:label];
+    });
 }
 
 /**
